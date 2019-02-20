@@ -1,0 +1,17 @@
+.Menu {
+    display: flex;
+    justify-content: space-between;
+}
+.MenuItem {
+    font-size: 30px;
+}
+.Position {
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 30%;
+    margin: 10px;
+}
+.Menu img {
+    width: 100px;
+    height: 100px;
+}
