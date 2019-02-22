@@ -69,7 +69,8 @@ const ffBuilderReducer = (state = initialState, action) => {
         case CLEAR_CART:
             return {
                 ...state,
-                cart: []
+                cart: [],
+                totalPrice: 150
             };
         default:
             return state
