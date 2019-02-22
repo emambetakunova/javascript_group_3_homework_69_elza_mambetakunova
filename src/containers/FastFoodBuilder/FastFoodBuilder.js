@@ -40,13 +40,16 @@ class FastFoodBuilder extends Component {
                 </div>
                 <h4 className="MenuItem">Cart list</h4>
                 <div className="CartWrap">
-                    <CartList clearCart={this.props.clearCart}/>
+                    <CartList/>
                 </div>
                 <Modal
                     show={this.props.purchasing}
                     close={this.props.purchaseCancel}
                 >
-                    <ContactData close={this.props.purchaseCancel}/>
+                    <ContactData
+                        close={this.props.purchaseCancel}
+                        clearCart={this.props.clearCart}
+                    />
                 </Modal>
             </div>
         );
@@ -57,7 +60,8 @@ const mapStateToProps = state => {
     return {
         positions: state.ff.positions,
         totalPrice: state.ff.totalPrice,
-        purchasing: state.ff.purchasing
+        purchasing: state.ff.purchasing,
+        cart: state.ff.cart
     };
 };
 
