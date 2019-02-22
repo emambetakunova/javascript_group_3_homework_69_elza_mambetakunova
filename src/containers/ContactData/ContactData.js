@@ -41,15 +41,19 @@ class ContactData extends Component {
             <form onSubmit={this.orderHandler}>
                 <input className="Input" type="text" name="name" placeholder="Your Name"
                        value={this.state.name} onChange={this.valueChanged}
+                       required
                 />
                 <input className="Input" type="email" name="email" placeholder="Your Mail"
                        value={this.state.email} onChange={this.valueChanged}
+                       required
                 />
                 <input className="Input" type="text" name="street" placeholder="Street"
                        value={this.state.street} onChange={this.valueChanged}
+                       required
                 />
                 <input className="Input" type="text" name="postal" placeholder="Postal Code"
                        value={this.state.postal} onChange={this.valueChanged}
+                       required
                 />
                 <Button btnType="Success">Create order</Button>
             </form>
