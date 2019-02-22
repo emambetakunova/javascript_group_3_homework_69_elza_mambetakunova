@@ -33,6 +33,7 @@ class ContactData extends Component {
 
         this.props.createOrder(orderData);
         this.props.close();
+        this.props.clearCart();
     };
 
     render() {
