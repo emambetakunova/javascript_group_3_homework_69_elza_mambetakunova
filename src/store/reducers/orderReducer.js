@@ -14,12 +14,13 @@ const orderReducer = (state = initialState, action) => {
         case ORDER_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
             };
         case ORDER_SUCCESS:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                purchasing: false,
             };
         case ORDER_FAILURE:
             return {

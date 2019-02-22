@@ -1,10 +1,11 @@
 import {
     ADD_POSITION,
     REMOVE_POSITION,
-    INIT_POSITIONS,
     POSITION_REQUEST,
     POSITION_SUCCESS,
-    POSITION_FAILURE
+    POSITION_FAILURE,
+    PLACE_ORDER,
+    CLOSE_MODAL, CLEAR_CART
 } from "../action/actionTypes";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
     count: null,
     cart: [],
     loading: false,
-    totalPrice: 0
+    purchasing: false,
+    totalPrice: 150
 };
 
 
@@ -29,7 +31,7 @@ const ffBuilderReducer = (state = initialState, action) => {
             const orders = {...state.cart, [action.position.name]: order};
             return {
                 ...state, cart: orders,
-                totalPrice: state.totalPrice + action.position.price
+                totalPrice: state.totalPrice + action.position.price,
             };
         case REMOVE_POSITION:
             let cart = {...state.cart};
@@ -39,17 +41,11 @@ const ffBuilderReducer = (state = initialState, action) => {
                     ...state, cart: cart,
                     totalPrice: state.totalPrice - cart[action.position].price
                 };
-        case INIT_POSITIONS:
-            return {
-                ...state,
-                positions: [],
-                totalPrice: 0
-            };
         case POSITION_REQUEST:
             return {
                 ...state,
                 positions: [],
-                totalPrice: 0
+                totalPrice: 150
             };
         case POSITION_SUCCESS:
             return {
@@ -59,6 +55,21 @@ const ffBuilderReducer = (state = initialState, action) => {
         case POSITION_FAILURE:
             return {
                 ...state
+            };
+        case PLACE_ORDER:
+            return {
+                ...state,
+                purchasing: true
+            };
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                purchasing: false
+            };
+        case CLEAR_CART:
+            return {
+                ...state,
+                cart: []
             };
         default:
             return state

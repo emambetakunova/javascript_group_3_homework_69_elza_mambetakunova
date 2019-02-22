@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import Positions from "../../components/Positions/Positions"
-import Cart from "../../components/CartList/CartList"
+import CartList from "../../components/CartList/CartList"
 import {connect} from "react-redux";
 
-import {addPosition, fetchPosition, removePosition} from "../../store/action/ffBuilderAction";
+import {addPosition, clearCart, closeModal, fetchPosition} from "../../store/action/ffBuilderAction";
+import Modal from "../../components/UI/Modal/Modal";
+import ContactData from "../ContactData/ContactData";
 
 
 class FastFoodBuilder extends Component {
@@ -18,6 +20,7 @@ class FastFoodBuilder extends Component {
         };
         this.props.addPosition(position)
     };
+
 
     render() {
         const positions = Object.keys(this.props.positions).map(posKey => (
@@ -35,12 +38,16 @@ class FastFoodBuilder extends Component {
                 <div className="Menu">
                     {positions}
                 </div>
-                <h4 className="MenuItem">Order list</h4>
-                <div className="OrderWrap">
-                    <Cart
-                    total={this.props.totalPrice}
-                    />
+                <h4 className="MenuItem">Cart list</h4>
+                <div className="CartWrap">
+                    <CartList clearCart={this.props.clearCart}/>
                 </div>
+                <Modal
+                    show={this.props.purchasing}
+                    close={this.props.purchaseCancel}
+                >
+                    <ContactData close={this.props.purchaseCancel}/>
+                </Modal>
             </div>
         );
     }
@@ -49,14 +56,17 @@ class FastFoodBuilder extends Component {
 const mapStateToProps = state => {
     return {
         positions: state.ff.positions,
-        totalPrice: state.ff.totalPrice
+        totalPrice: state.ff.totalPrice,
+        purchasing: state.ff.purchasing
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         addPosition: position => dispatch(addPosition(position)),
-        fetchPosition: () => dispatch(fetchPosition())
+        fetchPosition: () => dispatch(fetchPosition()),
+        purchaseCancel: () => dispatch(closeModal()),
+        clearCart: () => dispatch(clearCart())
     };
 };
 

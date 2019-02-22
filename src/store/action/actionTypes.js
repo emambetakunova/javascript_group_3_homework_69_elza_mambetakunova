@@ -1,6 +1,12 @@
 export const ADD_POSITION = 'ADD_POSITION';
 export const REMOVE_POSITION = 'REMOVE_POSITION';
-export const INIT_POSITIONS = 'INIT_POSITIONS';
+export const INIT_POSITION = 'INIT_POSITION';
+
+export const CLEAR_CART = 'CLEAR_CART';
+
+export const PLACE_ORDER = 'PLACE_ORDER';
+
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 export const ORDER_REQUEST = 'ORDER_REQUEST';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
